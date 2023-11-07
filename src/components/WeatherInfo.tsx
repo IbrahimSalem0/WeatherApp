@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 type WeatherInfoProps = {
   city: string;
@@ -17,13 +17,33 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({
   forecast,
 }) => {
   return (
-    <View>
-      <Text>{`${city}, ${country}`}</Text>
-      <Text>{conditionText}</Text>
-      <Image source={{ uri: conditionIcon }} />
-      <Text>{forecast}</Text>
+    <View style={styles.container}>
+      <Text style={styles.locationText}>{`${city}, ${country}`}</Text>
+      <Text style={styles.conditionText}>{conditionText}</Text>
+      <Image source={{ uri: conditionIcon }} style={styles.conditionIcon} />
+      <Text style={styles.forecastText}>{forecast}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  locationText: {
+    fontSize: 20,
+  },
+  conditionText: {
+    fontSize: 16,
+  marginBottom: 10,
+  },
+  conditionIcon: {
+    width: 64,
+    height: 64,
+  },
+  forecastText: {
+    fontSize: 16,
+  },
+});
 
 export default WeatherInfo;
