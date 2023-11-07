@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 
-const API_KEY = 'dcc282465705441a99394513230211';
-const BASE_URL = 'http://api.weatherapi.com/v1/search.json';
 
 const CitySearch = () => {
   const [query, setQuery] = useState('');
@@ -14,14 +12,6 @@ const CitySearch = () => {
       return;
     }
 
-    try {
-      const response = await fetch(`${BASE_URL}?key=${API_KEY}&q=${input}`);
-      const data = await response.json();
-      setResults(data);
-    } catch (error) {
-      console.error('Error fetching city suggestions:', error);
-    }
-  };
 
   useEffect(() => {
     fetchCitySuggestions(query);
